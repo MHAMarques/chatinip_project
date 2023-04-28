@@ -1,6 +1,6 @@
 import AppDataSource from "../../data-source";
 import { User } from "../../entities/user.entity";
-import { IUser, IUserRequest } from "../../interfaces/users";
+import { IUser } from "../../interfaces/users";
 import { userListSchema } from "../../schemas/user.schemas";
 
 const listUsersService = async (): Promise<IUser[]> => {
