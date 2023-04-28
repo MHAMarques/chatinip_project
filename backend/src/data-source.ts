@@ -1,6 +1,9 @@
 import { DataSource } from "typeorm";
-import path from "path";
 import "dotenv/config";
+import { User } from "./entities/user.entity";
+import { Channel } from "./entities/channel.entity";
+import { Message } from "./entities/message.entity";
+import { Entities1682690875663 } from "./migrations/1682690875663-Entities";
 
 const AppDataSource = new DataSource(
     {
@@ -12,8 +15,8 @@ const AppDataSource = new DataSource(
         database: process.env.PGDATABASE,
         logging: true,
         synchronize: false,
-        entities: [path.join(__dirname, "./entities/**.{js,ts}")],
-        migrations: [path.join(__dirname, "./migrations/**.{js,ts}")]
+        entities: [User, Channel, Message],
+        migrations: [Entities1682690875663]
     }
 )
 

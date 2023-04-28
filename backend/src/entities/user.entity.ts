@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BeforeInsert, BeforeUpdate, OneToMany } from "typeorm";
-import { hashSync } from "bcrypt";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { Message } from "./message.entity";
 
 @Entity('users')
 class User {
@@ -23,6 +23,9 @@ class User {
 
     @UpdateDateColumn()
     updatedAt: Date;
+
+    @OneToMany(() => Message, (Message) => Message.user, { cascade: true})
+    messages: Message[];
 }
 
 export {User};
