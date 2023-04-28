@@ -9,7 +9,7 @@ function App() {
     <>
       <div>
         <a href="https://vitejs.dev" target="_blank">
-          <img src={chatlogo} alt="Chatinip logo" />
+          <img src={chatlogo} alt="Chatinip Messenger" />
         </a>
       </div>
       <h1>Web Messenger</h1>
