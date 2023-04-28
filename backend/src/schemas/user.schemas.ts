@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
-import { IUserRequest, IUserUpdate, IUser } from "../interfaces/users";
+import { IUserRequest, IUserUpdate, IUser, IUserMessenger } from "../interfaces/users";
 
 export const newUserSchema: SchemaOf<IUserRequest> = yup.object().shape({
     name: yup.string().min(2).max(100).required(),
@@ -20,6 +20,12 @@ export const userResponseSchema: SchemaOf<IUser> = yup.object().shape({
     createdAt: yup.date(),
     isAdmin: yup.boolean(),
     email: yup.string().email(),
+    name: yup.string(),
+    id: yup.string()
+});
+
+export const userMessengerSchema: SchemaOf<IUserMessenger> = yup.object().shape({
+    createdAt: yup.date(),
     name: yup.string(),
     id: yup.string()
 });

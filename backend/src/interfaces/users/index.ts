@@ -16,6 +16,12 @@ export interface IUser {
     id: string
 }
 
+export interface IUserMessenger {
+    createdAt: Date
+    name: string
+    id: string
+}
+
 export interface IUserLogin {
     email: string
     password: string

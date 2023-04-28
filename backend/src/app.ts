@@ -16,7 +16,7 @@ app.use(cors());
 app.use('/users', userRoutes);
 app.use('/login', loginRoutes);
 app.use('/channels', channelRoutes);
-app.use('/message', messageRoutes);
+app.use('/messages', messageRoutes);
 
 app.use(handleError);
 

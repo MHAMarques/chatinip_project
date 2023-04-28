@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import AppError from "../errors/AppError";
 import { User } from "../entities/user.entity";
 import { Channel } from "../entities/channel.entity";
+import { Message } from "../entities/message.entity";
 
 export const validUserIdMiddleware = async ( req:Request, res:Response, nxt:NextFunction) => {
     const checkId = req.params.id;
@@ -22,6 +23,17 @@ export const validChannelIdMiddleware = async ( req:Request, res:Response, nxt:N
     const validQuery = await channelRepo.findOneBy({id: checkId});
     if(String(validQuery) === 'null'){
         throw new AppError(404, 'Channel not found!');
+    }
+    return nxt();    
+}
+
+export const validMessageIdMiddleware = async ( req:Request, res:Response, nxt:NextFunction) => {
+    const checkId = req.params.id;
+    const messageRepo = AppDataSource.getRepository(Message);
+    
+    const validQuery = await messageRepo.findOneBy({id: checkId});
+    if(String(validQuery) === 'null'){
+        throw new AppError(404, 'Message not found!');
     }
     return nxt();    
 }
