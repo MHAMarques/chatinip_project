@@ -11,8 +11,7 @@ const channelMessagesService = async (receiverId: string): Promise<IMessageRespo
     .select(["message", "user.name", "user.id"])
     .where("message.receiver = :receiverId", {receiverId: receiverId})
     .andWhere("message.direct = :direct", {direct: false})
-    .orderBy("user.name", "ASC")
-    .addOrderBy("message.createdAt", "DESC")
+    .orderBy("message.createdAt", "DESC")
     .getMany();
     
     const returnInfo = await messageListSchema.validate(
