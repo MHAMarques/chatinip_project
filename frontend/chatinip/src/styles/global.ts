@@ -99,8 +99,7 @@ input {
 }
 
 input:focus {
-    border-color: var(--brans-2);
-    background-color: var(--white-fixed);
+    border-color: var(--brand-2);
 }
 
 button {

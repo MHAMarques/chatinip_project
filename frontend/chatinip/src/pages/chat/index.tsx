@@ -1,13 +1,19 @@
 import { useContext, useEffect, useState } from "react"
+import { useLocation } from "react-router-dom";
 import { WebContext } from "../../context";
 import { IUserRespose, IUserMessage } from "../../interfaces"
 import { MainChat, AsideChat, FooterAuthor, MessengerChat, ChatInput } from "../../styles/chat"
 import { SideHeader } from "../../components/SideHeader";
+import { ChatList } from "../../components/ChatList";
 
 export const ChatPage = () => {
     const { navigate, token, userProfile, userMessages } = useContext(WebContext);
     const [user, setUser] = useState<IUserRespose | void>()
     const [userChat, setUserChat] = useState<IUserMessage[] | void>()
+    const [direct, setDirect] = useState<string | null>(null);
+    const [channel, setChannel] = useState<string | null>(null);
+    const location = useLocation();
+    
 
     useEffect(() => {
         async function getUser(){
@@ -18,11 +24,22 @@ export const ChatPage = () => {
             setUserChat(dataMessages);
         }
         
-        if(token){getUser();}
+        if(token){
+            getUser();
+            
+            const queryParams = new URLSearchParams(location.search);
+            const queryDirect = queryParams.get('direct');
+            const queryChannel = queryParams.get('channel');
+            
+            setDirect(queryDirect);
+            setChannel(queryChannel);
+
+            if(queryChannel && queryDirect){navigate('/');}
+        }
         else{navigate('/');}
 
-    }, [navigate, token, userProfile, userMessages]);
-
+    }, [navigate, token, userProfile, userMessages, location]);
+    
     return (
         <MainChat>
             <AsideChat>
@@ -33,10 +50,11 @@ export const ChatPage = () => {
             </AsideChat>
             <MessengerChat>
                 <article>
-                    <p>Input</p>
+                    {direct ? <ChatList chatMessages={userChat} chatUser={user} /> : channel? <ChatList chatMessages={userChat} chatUser={user} /> : <h1>Bem vindo ao Chatinip</h1>}
                 </article>
                 <ChatInput >
-                    <input type="text" /><button>Enviar</button>
+                {direct ? <><input type="text" /><button>Enviar</button></> : channel? <><input type="text" /><button>Enviar</button></> : ''}
+                    
                 </ChatInput>
             </MessengerChat>
             
