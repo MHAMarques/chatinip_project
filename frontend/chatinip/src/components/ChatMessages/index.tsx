@@ -11,16 +11,18 @@ type ChannelMessageProps = {
     chatUser: IUserRespose | void;
 }
 
+function formatDate(date: Date) {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear().toString();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+  
+    return `${day}-${month}-${year} ( ${hours}:${minutes} )`;
+}
+
 export const DirectMessage = ({chatMessage, chatUser}: DirectMessageProps) => {
-    function formatDate(date: Date) {
-        const day = date.getDate().toString().padStart(2, '0');
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const year = date.getFullYear().toString();
-        const hours = date.getHours().toString().padStart(2, '0');
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-      
-        return `${day}-${month}-${year} ( ${hours}:${minutes} )`;
-      }
+    
     const messageDate = new Date(chatMessage.createdAt);
     const formattedDate = formatDate(messageDate);
     
@@ -40,15 +42,7 @@ export const DirectMessage = ({chatMessage, chatUser}: DirectMessageProps) => {
 }
 
 export const ChannelMessage = ({chatMessage, chatUser}: ChannelMessageProps) => {
-    function formatDate(date: Date) {
-        const day = date.getDate().toString().padStart(2, '0');
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const year = date.getFullYear().toString();
-        const hours = date.getHours().toString().padStart(2, '0');
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-      
-        return `${day}-${month}-${year} ( ${hours}:${minutes} )`;
-      }
+
     const messageDate = new Date(chatMessage.createdAt);
     const formattedDate = formatDate(messageDate);
     

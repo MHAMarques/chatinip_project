@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { IUserLogin, IUserRequest, IContextProps, IContext } from "../interfaces";
+import { IUserLogin, IUserRequest, IContextProps, IContext, ISendMessage } from "../interfaces";
 import { api } from "../service";
 import { toast } from "react-toastify";
 
@@ -63,7 +63,7 @@ export const Provider = ({ children }: IContextProps) => {
 
     const userMessages = async (): Promise<void> => {
         api.defaults.headers.authorization = `Bearer ${token}`;
-        const getUser = await api
+        const getMessages = await api
         .get('/messages/')
         .then((res) => res.data)
         .catch((err => {
@@ -71,7 +71,7 @@ export const Provider = ({ children }: IContextProps) => {
             toast.error(err.message);
             return false
         }))
-        return getUser
+        return getMessages
     }
 
     const channelMessages = async (): Promise<void> => {
@@ -113,12 +113,26 @@ export const Provider = ({ children }: IContextProps) => {
         return getChannels
     }
 
+    const sendMessage = async (data: ISendMessage): Promise<void> => {
+        data.direct == '1' ? data.direct = true : data.direct = false;
+        api.defaults.headers.authorization = `Bearer ${token}`;
+        await api
+        .post('/messages/', data)
+        .then((res) => res.data)
+        .catch((err => {
+            console.log("ERRO: ",err.message)
+            toast.error(err.message);
+            return false
+        }))
+    }
+
     return (
         <WebContext.Provider value={{
             navigate,
             token,
             userSignIn,
             userSignUp,
+            sendMessage,
             userProfile,
             userMessages,
             channelMessages,

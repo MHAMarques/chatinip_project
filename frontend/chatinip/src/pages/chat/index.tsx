@@ -9,6 +9,7 @@ import { ChatHome } from "../../components/ChatHome";
 import { ChannelList } from "../../components/ChannelList";
 import { DirectList } from "../../components/DirectList";
 import { OptionList } from "../../components/OptionList";
+import { MessageForm } from "../../components/MessageForm";
 
 export const ChatPage = () => {
     const { navigate, token, userProfile, userMessages, channelMessages, channelInfo, userChannels } = useContext(WebContext);
@@ -17,6 +18,7 @@ export const ChatPage = () => {
     const [channelChat, setChannelChat] = useState<IUserMessage[] | void>()
     const [channelName, setChannelName] = useState<IChatChannel | void>()
     const [directId, setDirectId] = useState<string | null>(null)
+    const [channelId, setChannelId] = useState<string | null>(null)
     const [listChannels, setListChannels] = useState<IUserChannels[] | void>();
     const [direct, setDirect] = useState<string | null>(null);
     const [channel, setChannel] = useState<string | null>(null);
@@ -55,6 +57,7 @@ export const ChatPage = () => {
 
             if(queryChannel && queryDirect){navigate('/');}
             if(queryChannel){
+                setChannelId(queryChannel)
                 getChannelMessages();
             }if(queryDirect){
                 setDirectId(queryDirect);
@@ -81,7 +84,7 @@ export const ChatPage = () => {
                     {direct ? <DirectChat chatMessages={userChat} chatUser={user} chatInfo={directId}/> : channel? <ChannelChat chatMessages={channelChat} chatUser={user} chatInfo={channelName} /> : <ChatHome chatUser={user} />}
                 </article>
                 <ChatInput >
-                {direct ? <><input type="text" /><button>Enviar</button></> : channel? <><input type="text" /><button>Enviar</button></> : ''}
+                {direct ? <MessageForm receiverId={directId} direct={true} /> : channel? <MessageForm receiverId={channelId} direct={false} /> : ''}
                     
                 </ChatInput>
             </MessengerChat>

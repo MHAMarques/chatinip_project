@@ -36,6 +36,12 @@ export interface IUserMessage {
     user: IUser;
 }
 
+export interface ISendMessage {
+    message: string;
+    direct: string | boolean;
+    receiver: string;
+}
+
 export interface IUserChannels {
     id: string;
     name: string;
@@ -51,6 +57,7 @@ export interface IContext {
     token: string | null;
     userSignIn: (data: IUserLogin) => void;
     userSignUp: (data: IUserRequest) => void;
+    sendMessage: (data: ISendMessage) => void;
     userProfile: () => void;
     userMessages: () => void;
     channelMessages: () => void;

@@ -28,12 +28,14 @@ export const DirectChat = ({chatMessages, chatUser, chatInfo}: DirectChatProps) 
     const directName = chatMessages?.find((message) => message.user.id === chatInfo)?.user.name;
 
     return(
+        <>
+        <h4>@ {directName}</h4><hr />
         <ul>
-            <h4>@ {directName}</h4><hr />
             {chatMessages?.filter((chatMessage) => chatMessage.user.id === chatInfo || chatMessage.user.id === chatUser?.id && chatMessage.receiver === chatInfo)
             .sort((a, b) => (a.createdAt > b.createdAt) ? 1 : ((b.createdAt > a.createdAt) ? -1 : 0)).map((chatMessage) => (
                 <DirectMessage key={chatMessage.id} chatMessage={chatMessage} chatUser={chatUser} />
             ))}
         </ul>
+        </>
     )
 }

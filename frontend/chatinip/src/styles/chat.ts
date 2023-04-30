@@ -8,7 +8,7 @@ export const MainChat = styled.div`
     align-items: center;
 
     width: 100%;
-    min-height: 100vh;
+    max-height: 100vh;
 `;
 
 export const AsideInfo = styled.aside`
@@ -81,6 +81,7 @@ export const MessengerChat = styled.div`
         font-size: 14px;
         font-weight: 300;
         text-align: justify;
+        
     }
     h4 {
         font-size: 16px;
@@ -92,7 +93,11 @@ export const MessengerChat = styled.div`
         margin-top: 10px;
     }
     ul {
+        overflow-y: auto;
+        height: auto;
+        max-height: 90vh;
         width: 100%;
+        margin-bottom: -40px;
     }
     
 `;
