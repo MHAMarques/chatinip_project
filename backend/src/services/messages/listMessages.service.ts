@@ -10,6 +10,7 @@ const listMessagesService = async (receiverId: string): Promise<IMessageResponse
     .leftJoinAndSelect("message.user", "user")
     .select(["message", "user.name", "user.id"])
     .where("message.receiver = :receiverId", {receiverId: receiverId})
+    .orWhere("message.user = :userId", {userId: receiverId})
     .andWhere("message.direct = :direct", {direct: true})
     .orderBy("user.name", "ASC")
     .addOrderBy("message.createdAt", "DESC")
