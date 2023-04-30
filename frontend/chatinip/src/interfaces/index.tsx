@@ -41,6 +41,11 @@ export interface IUserChannels {
     name: string;
 }
 
+export interface IChatChannel {
+    id: string;
+    name: string;
+}
+
 export interface IContext {
     navigate: NavigateFunction;
     token: string | null;
@@ -48,6 +53,8 @@ export interface IContext {
     userSignUp: (data: IUserRequest) => void;
     userProfile: () => void;
     userMessages: () => void;
+    channelMessages: () => void;
+    channelInfo: () => void;
     userChannels: () => void;
 }
 

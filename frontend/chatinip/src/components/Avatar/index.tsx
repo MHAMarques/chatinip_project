@@ -8,10 +8,11 @@ export const Avatar = ({username}: AvatarProps) => {
     const firstName = username?.toString();
     const colorPicker = (char: string) => {
         const colors = [
-            '#C4DEF6', '#9AC2E8', '#6DA6D4', '#498CC6', '#2E74B2',
-            '#1C5F9D', '#13518E', '#0D427B', '#083063', '#052647',
-            '#052647', '#052647', '#052647', '#052647', '#052647'
+            '#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5',
+            '#2196F3', '#03A9F4', '#00BCD4', '#009688', '#4CAF50',
+            '#8BC34A', '#CDDC39', '#FFC107', '#FF9800', '#FF5722'
           ];
+          
           
           
         const charCode = char.charCodeAt(0);

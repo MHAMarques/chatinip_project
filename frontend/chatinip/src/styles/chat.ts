@@ -21,12 +21,11 @@ export const AsideInfo = styled.aside`
     background-color: var(--gray-2);
     width: 25%;
     height: 100vh;
-    max-width: 320px;
+    max-width: 280px;
     min-width: 240px;
     padding: 10px;
 
     text-align: left;
-    position: relative;
     overflow-y: auto;
     z-index: 1;
     .logo {
@@ -82,6 +81,15 @@ export const MessengerChat = styled.div`
         font-size: 14px;
         font-weight: 300;
         text-align: justify;
+    }
+    h4 {
+        font-size: 16px;
+        color: var(--gray-4);
+    }
+    hr {
+        width: 100%;
+        border: 1px solid var(--gray-2);
+        margin-top: 10px;
     }
     ul {
         width: 100%;
@@ -155,6 +163,7 @@ export const AvatarDiv = styled.div`
 
     font-size: 21px;
     font-weight: 700;
+    padding: 0px 0px 2px 1px;
 
     width: 42px;
     height: 42px;
@@ -203,15 +212,4 @@ export const ListDiv = styled.div`
         margin: 10px;
     }
     
-`;
-
-export const FooterAuthor = styled.p`
-    position: absolute fixed;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    min-height: 35px;
-    font-size: 12px;
-    font-weight: 300;
-    text-align: center;
 `;

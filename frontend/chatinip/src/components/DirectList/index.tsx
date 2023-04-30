@@ -9,7 +9,7 @@ type DirectListProps = {
 
 export const DirectList = ({messages, userId}: DirectListProps) => {
     
-    const filterMessages = (messages: IUserMessage[], userId: string | undefined) => {
+    const filterReceived = (messages: IUserMessage[], userId: string | undefined) => {
         const uniqueMessages:any = {};
         
         messages.forEach((message) => {
@@ -20,12 +20,12 @@ export const DirectList = ({messages, userId}: DirectListProps) => {
         
         return Object.values(uniqueMessages);
     };
-    const filteredMessages = filterMessages(messages?messages:[], userId);
+    const filteredReceived = filterReceived(messages?messages:[], userId);
     return(
         <ListDiv>
-            <h2>Conversas</h2><hr />
+            <h2>Recebidas</h2><hr />
             <ul>
-            {filteredMessages.map((message:any) => (
+            {filteredReceived.map((message:any) => (
                 <li key={message?.id}>
                     <p>@ <a href={'?direct='+ message.user.id}>{message.user.name}</a></p>
                 </li>

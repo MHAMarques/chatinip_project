@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { IUserLogin, IUserRequest, IContextProps, IContext } from "../interfaces";
 import { api } from "../service";
 import { toast } from "react-toastify";
@@ -9,6 +9,10 @@ export const WebContext = createContext<IContext>({} as IContext);
 export const Provider = ({ children }: IContextProps) => {
     const token = localStorage.getItem("chatinip:Token");
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const queryParams = new URLSearchParams(location.search);
+    const queryChannel = queryParams.get('channel');
 
     const userSignIn = async (data: IUserLogin): Promise<void> => {
         const logUser = await api
@@ -20,8 +24,8 @@ export const Provider = ({ children }: IContextProps) => {
         }))
         if(logUser){
             localStorage.setItem("chatinip:Token", logUser.token);
-            toast.success("Acesso garantido");
-            setTimeout(() => navigate('/chat'), 500);
+            toast.success("Informações corretas");
+            navigate('/chat');
         } 
         else{
             toast.error("Informações incorretas");
@@ -51,6 +55,7 @@ export const Provider = ({ children }: IContextProps) => {
         .catch((err => {
             localStorage.removeItem("chatinip:Token");
             toast.error(err.message);
+            navigate('/');
             return false
         }))
         return getUser
@@ -60,6 +65,32 @@ export const Provider = ({ children }: IContextProps) => {
         api.defaults.headers.authorization = `Bearer ${token}`;
         const getUser = await api
         .get('/messages/')
+        .then((res) => res.data)
+        .catch((err => {
+            console.log("ERRO: ",err.message)
+            toast.error(err.message);
+            return false
+        }))
+        return getUser
+    }
+
+    const channelMessages = async (): Promise<void> => {
+        api.defaults.headers.authorization = `Bearer ${token}`;
+        const getUser = await api
+        .get('/messages/'+queryChannel)
+        .then((res) => res.data)
+        .catch((err => {
+            console.log("ERRO: ",err.message)
+            toast.error(err.message);
+            return false
+        }))
+        return getUser
+    }
+
+    const channelInfo = async (): Promise<void> => {
+        api.defaults.headers.authorization = `Bearer ${token}`;
+        const getUser = await api
+        .get('/channels/'+queryChannel)
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
@@ -90,6 +121,8 @@ export const Provider = ({ children }: IContextProps) => {
             userSignUp,
             userProfile,
             userMessages,
+            channelMessages,
+            channelInfo,
             userChannels,
             }}>
             {children}
