@@ -1,5 +1,11 @@
 import { NavigateFunction } from "react-router-dom";
 
+
+export interface IUser {
+    id: string;
+    name: string
+}
+
 export interface IUserLogin {
     email: string;
     password: string;
@@ -20,11 +26,6 @@ export interface IUserRespose {
     updatedAt: Date;
 }
 
-export interface IUser {
-    id: string;
-    name: string
-}
-
 export interface IUserMessage {
     id: string;
     message: string;
@@ -35,6 +36,11 @@ export interface IUserMessage {
     user: IUser;
 }
 
+export interface IUserChannels {
+    id: string;
+    name: string;
+}
+
 export interface IContext {
     navigate: NavigateFunction;
     token: string | null;
@@ -42,6 +48,7 @@ export interface IContext {
     userSignUp: (data: IUserRequest) => void;
     userProfile: () => void;
     userMessages: () => void;
+    userChannels: () => void;
 }
 
 export interface IContextProps {

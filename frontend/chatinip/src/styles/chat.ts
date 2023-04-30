@@ -7,27 +7,27 @@ export const MainChat = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
 `;
 
-export const AsideChat = styled.div`
+export const AsideInfo = styled.aside`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap:15px;
+    gap:10vh;
     
     background-color: var(--gray-2);
     width: 25%;
-    height: 100%;
+    height: 100vh;
     max-width: 320px;
     min-width: 240px;
-    min-height: 100vh;
-    padding: 5px;
+    padding: 10px;
 
     text-align: left;
     position: relative;
+    overflow-y: auto;
     z-index: 1;
     .logo {
         height: 42px;
@@ -38,6 +38,7 @@ export const AsideChat = styled.div`
     .logo:hover {
         filter: drop-shadow(0 0 10px var(--boxShadow));
     }
+    
 `;
 
 export const SideProfile = styled.div`
@@ -146,8 +147,66 @@ export const ChatInput = styled.div`
     }
 `;
 
+export const AvatarDiv = styled.div`
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    width: 42px;
+    height: 42px;
+    will-change: filter;
+    transition: filter 300ms;
+
+    background-color: ${(props) => props.color};
+    color: var(--white-fixed);
+    text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
+    border-radius: 50%;
+    border: 1px solid var(--black-fixed);
+
+    :hover {
+        filter: drop-shadow(0 0 10px var(--boxShadow));
+    }
+
+    p {
+        width: 100%;
+        text-align: center;
+    }
+`;
+
+export const ListDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap:15px;
+    
+    padding: 35px auto;
+    width: 100%;
+
+    hr {
+        width: 100%;
+        border: 1px solid var(--gray-1);
+        margin-top: -10px;
+    }
+    ul {
+        width: 100%;
+    }
+    li {
+        margin: 10px;
+    }
+    
+`;
+
 export const FooterAuthor = styled.p`
-    position: absolute;
+    position: absolute fixed;
     bottom: 0px;
     left: 0px;
     width: 100%;

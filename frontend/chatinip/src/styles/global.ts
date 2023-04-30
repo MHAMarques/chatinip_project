@@ -42,6 +42,21 @@ export const GlobalStyleDefault = createGlobalStyle`
     box-sizing: border-box
 }
 
+::-webkit-scrollbar {
+width: 5px;
+background-color: #1b1b1b;
+}
+
+/* Set the color and shape of the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+background-color: #383838;
+border-radius: 5px;
+}
+
+/* Set the color of the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+background-color: #555;
+}
 
 body {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -144,7 +159,5 @@ li{
 .myToast .Toastify__close-button {
   color: var(--gray-6);
 }
-
-
 
 `;

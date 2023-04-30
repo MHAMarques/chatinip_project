@@ -69,6 +69,19 @@ export const Provider = ({ children }: IContextProps) => {
         return getUser
     }
 
+    const userChannels = async (): Promise<void> => {
+        api.defaults.headers.authorization = `Bearer ${token}`;
+        const getChannels = await api
+        .get('/channels/')
+        .then((res) => res.data)
+        .catch((err => {
+            console.log("ERRO: ",err.message)
+            toast.error(err.message);
+            return false
+        }))
+        return getChannels
+    }
+
     return (
         <WebContext.Provider value={{
             navigate,
@@ -77,6 +90,7 @@ export const Provider = ({ children }: IContextProps) => {
             userSignUp,
             userProfile,
             userMessages,
+            userChannels,
             }}>
             {children}
         </WebContext.Provider>
