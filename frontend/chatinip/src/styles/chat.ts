@@ -28,6 +28,11 @@ export const AsideInfo = styled.aside`
     text-align: left;
     overflow-y: auto;
     z-index: 1;
+
+    @media screen and (max-width: 580px) {
+      display: none;
+    }
+
     .logo {
         height: 42px;
         will-change: filter;
@@ -72,16 +77,23 @@ export const MessengerChat = styled.div`
     
     padding: 35px auto;
     width: 100%;
-    min-height: 100vh;
+    max-height: 100vh;
 
+    @media screen and (max-width: 580px) {
+        padding-top: 60px;
+    }
+    
     article {
         width: 100%;
+        height: 90vh;
         padding: 10px;
 
         font-size: 14px;
         font-weight: 300;
         text-align: justify;
-        
+        @media screen and (max-width: 580px) {
+            max-height: 80vh;
+        }
     }
     h4 {
         font-size: 16px;
@@ -98,6 +110,9 @@ export const MessengerChat = styled.div`
         max-height: 90vh;
         width: 100%;
         margin-bottom: -40px;
+        @media screen and (max-width: 580px) {
+            max-height: 80vh;
+        }
     }
     
 `;
@@ -217,4 +232,64 @@ export const ListDiv = styled.div`
         margin: 10px;
     }
     
+`;
+
+export const SelectMenu = styled.section`
+
+    @media screen and (min-width: 581px) {
+        display: none;
+    }
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--gray-1);
+    position: fixed;
+    top:0;
+
+    width: 100%;
+    min-height: 60px;
+
+    select {
+        background-color: var(--gray-2);
+        color: var(--white-fixed);
+
+        height: 35px;
+        width: 80vw;
+        padding: 0;
+
+        font-size: 15px;
+        font-weight: 500;
+        text-align: center;
+
+        optgroup {
+            color: var(--white-fixed);
+            font-size: 16px;
+            font-weight: 700;
+        }
+    }
+`;
+
+export const HomeSection = styled.section`
+    width: 100%;
+    min-height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+        height: 180px;
+        filter: grayscale(100%);
+        opacity: 0.1;
+
+        @media screen and (max-width: 580px) {
+           width: 80%;
+           height: auto;
+           max-width: 120px;
+        }
+    }
 `;

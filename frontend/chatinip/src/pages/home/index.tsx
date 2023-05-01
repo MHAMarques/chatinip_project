@@ -1,4 +1,3 @@
-//import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react';
 import chatlogo from '../../assets/logoBrand.png'
@@ -7,9 +6,7 @@ import { WebContext } from '../../context';
 
 
 export const HomePage = () => {
-    //const [count, setCount] = useState(0)
-    //<button onClick={() => setCount((count) => count + 1)}>
-    const navigate = useNavigate();
+     const navigate = useNavigate();
     const { token } = useContext(WebContext);
 
     const goSignUp = () => navigate('/signup');

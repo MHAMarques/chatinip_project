@@ -22,7 +22,6 @@ function formatDate(date: Date) {
 }
 
 export const DirectMessage = ({chatMessage, chatUser}: DirectMessageProps) => {
-    
     const messageDate = new Date(chatMessage.createdAt);
     const formattedDate = formatDate(messageDate);
     
@@ -42,7 +41,6 @@ export const DirectMessage = ({chatMessage, chatUser}: DirectMessageProps) => {
 }
 
 export const ChannelMessage = ({chatMessage, chatUser}: ChannelMessageProps) => {
-
     const messageDate = new Date(chatMessage.createdAt);
     const formattedDate = formatDate(messageDate);
     

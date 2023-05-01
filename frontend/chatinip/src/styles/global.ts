@@ -96,9 +96,10 @@ form {
     width: 100%;
 }
 
-input {
+input,
+select {
     border-radius: 5px;
-    border: 1px solid var(--brand-1);
+    border: 1px solid var(--brand-2);
     padding: 0.6em;
     height: 35px;
 
@@ -119,7 +120,7 @@ input:focus {
 
 button {
     border-radius: 5px;
-    border: 1px solid var(--brand-1);
+    border: 1px solid var(--brand-2);
     height: 35px;
 
     font-size: 1em;
@@ -128,7 +129,7 @@ button {
     text-align: center;
     vertical-align: middle;
     
-    background-color: var(--brand-1);
+    background-color: var(--brand-2);
     color: var(--white-fixed);
     cursor: pointer;
     transition: border-color 0.25s;
@@ -136,7 +137,7 @@ button {
 
 button:hover {
     border-color: var(--white-fixed);
-    background-color: var(--brand-2);
+    background-color: var(--brand-3);
 }
 
 button:focus,

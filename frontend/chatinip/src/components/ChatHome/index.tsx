@@ -1,4 +1,6 @@
 import { IUserRespose } from "../../interfaces"
+import { HomeSection } from "../../styles/chat"
+import chatlogo from "../../assets/logoBrand.png"
 
 type ChatHomeProps = {
     chatUser: IUserRespose | void;
@@ -7,10 +9,8 @@ type ChatHomeProps = {
 export const ChatHome = ({chatUser}: ChatHomeProps) => {
     //
     return(
-        <>
-        <h1>Este é seu ambiente Chatinip</h1>
-        <hr />
-        <p> {chatUser?.name}</p>
-        </>
+        <HomeSection>
+            <img src={chatlogo} className='logo' alt="Chatinip Messenger" />
+        </HomeSection>
     )
 }
