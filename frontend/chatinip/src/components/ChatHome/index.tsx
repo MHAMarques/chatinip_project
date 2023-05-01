@@ -10,7 +10,7 @@ export const ChatHome = ({chatUser}: ChatHomeProps) => {
     //
     return(
         <HomeSection>
-            <img src={chatlogo} className='logo' alt="Chatinip Messenger" />
+            <img src={chatlogo} className='logo' alt="Chatinip Messenger" title={chatUser?.name} />
         </HomeSection>
     )
 }
