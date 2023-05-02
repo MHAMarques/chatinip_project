@@ -9,7 +9,7 @@ type MobileMenuProps = {
 }
 
 export const MobileMenu = ({userId}: MobileMenuProps) => {
-    const { navigate, userMessages, userChannels } = useContext(WebContext);
+    const { userMessages, userChannels } = useContext(WebContext);
     const [userChat, setUserChat] = useState<IUserMessage[] | void>()
     const [listChannels, setListChannels] = useState<IUserChannels[] | void>();
     useEffect(() => {
@@ -42,12 +42,12 @@ export const MobileMenu = ({userId}: MobileMenuProps) => {
     const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) =>
     {
         const url = event.target.value;
-        navigate(url)
+        window.location.href = url;
     }
     return(
         <SelectMenu>
             <select name="menu" id="menu" onChange={handleSelect}>
-                <option>Menu</option>
+            <option value={'/chat'}>Menu</option>
 
                 <optgroup label="Canais">
                 {listChannels?.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map((channel) => (
