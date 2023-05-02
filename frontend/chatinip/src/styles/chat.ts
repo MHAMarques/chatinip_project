@@ -107,11 +107,11 @@ export const MessengerChat = styled.div`
     ul {
         overflow-y: auto;
         height: auto;
-        max-height: 90vh;
+        max-height: 88vh;
         width: 100%;
         margin-bottom: -40px;
         @media screen and (max-width: 580px) {
-            max-height: 80vh;
+            max-height: 78vh;
         }
     }
     
