@@ -31,8 +31,6 @@ SECRET_KEY=TroqueEssaSecrect_key
    "web_url":"http://localhost:5173",
    "api_url":"http://localhost:3030"
    }</pre>
-   
-8. Utilizando um programa tipo <b>Insomnia</b> crie uma conta de administrador, faça o login com a mesma e através da rota <b> POST /Channels</b> crie os canais a serem usados no sistema.
 
 
 <h2 style="font-size:32px;color:mediumblue">Back-End - Chatinip API:</h2>
