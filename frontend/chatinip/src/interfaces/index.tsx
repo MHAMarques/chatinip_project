@@ -58,6 +58,7 @@ export interface IContext {
     userSignIn: (data: IUserLogin) => void;
     userSignUp: (data: IUserRequest) => void;
     sendMessage: (data: ISendMessage) => void;
+    getProfile: (userId: string) => void;
     userProfile: () => void;
     userMessages: () => void;
     channelMessages: () => void;

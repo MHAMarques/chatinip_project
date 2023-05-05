@@ -120,7 +120,7 @@ export const ChatPage = () => {
                 <SideHeader user={user} />
                 <ChannelList channels={listChannels}/>
                 <DirectList messages={userChat} userId={user?.id} />
-                <OptionList />
+                <OptionList isAdmin={user?.isAdmin}/>
             </AsideInfo>
             <MessengerChat>
                 <MobileMenu userId={user?.id}/>

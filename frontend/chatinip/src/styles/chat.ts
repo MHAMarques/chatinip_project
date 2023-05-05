@@ -14,7 +14,7 @@ export const MainChat = styled.div`
 export const AsideInfo = styled.aside`
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     gap:10vh;
     
@@ -107,11 +107,11 @@ export const MessengerChat = styled.div`
     ul {
         overflow-y: auto;
         height: auto;
-        max-height: 90vh;
+        max-height: 88vh;
         width: 100%;
         margin-bottom: -40px;
         @media screen and (max-width: 580px) {
-            max-height: 80vh;
+            max-height: 78vh;
         }
     }
     
@@ -120,7 +120,7 @@ export const MessengerChat = styled.div`
 export const MessageItem = styled.li`
     margin: 15px 5px;
     background-color: var(--gray-2);
-    padding: 5px 0.8rem;
+    padding: 0.8rem;
     border-radius: 8px;
 
     .sender {
@@ -138,6 +138,7 @@ export const MessageItem = styled.li`
     h3 {
         font-size: 16px;
         font-weight: 300;
+        text-align: justify;
         color: var(--white-fixed);
     }
     h4 {

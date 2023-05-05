@@ -61,6 +61,20 @@ export const Provider = ({ children }: IContextProps) => {
         return getUser
     }
 
+    const getProfile = async (userId: string): Promise<void> => {
+        api.defaults.headers.authorization = `Bearer ${token}`;
+        const getUser = await api
+        .get('/users/'+userId)
+        .then((res) => res.data)
+        .catch((err => {
+            localStorage.removeItem("chatinip:Token");
+            toast.error(err.message);
+            navigate('/');
+            return false
+        }))
+        return getUser
+    }
+
     const userMessages = async (): Promise<void> => {
         api.defaults.headers.authorization = `Bearer ${token}`;
         const getMessages = await api
@@ -133,6 +147,7 @@ export const Provider = ({ children }: IContextProps) => {
             userSignIn,
             userSignUp,
             sendMessage,
+            getProfile,
             userProfile,
             userMessages,
             channelMessages,
