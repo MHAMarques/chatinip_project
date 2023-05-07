@@ -24,6 +24,7 @@ export const AsideInfo = styled.aside`
     max-width: 280px;
     min-width: 240px;
     padding: 10px;
+    border-right: 1px solid var(--black-fixed);
 
     text-align: left;
     overflow-y: auto;
@@ -123,10 +124,10 @@ export const MessengerChat = styled.div`
 `;
 
 export const MessageItem = styled.li`
-    margin: 15px 5px;
+    margin: 25px 10px;
     background-color: var(--gray-2);
-    padding: 0.8rem;
     border-radius: 8px;
+    border: 2px solid var(--black-fixed);
 
     .sender {
         text-align: right;
@@ -138,26 +139,33 @@ export const MessageItem = styled.li`
 
     .reverser {
         flex-direction: row-reverse;
+        background-color: var(--gray-1);
     }
 
     h3 {
         font-size: 16px;
         font-weight: 300;
-        padding: 5px 10px;
+        padding: 15px;
+
+        text-align: justify;
         color: var(--white-fixed);
     }
     h4 {
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: center;
-
+        
         font-size: 14px;
         font-weight: 500;
+        padding: 5px 10px;
+
+        background-color: var(--gray-0);
+        border-radius: 6px 6px 0px 0px;
+        border-bottom: 1px solid var(--black-fixed);
     }
     small{
         font-size: 10px;
-        padding: 0px 10px;
         color: var(--gray-3);
     }
 `;
@@ -245,7 +253,7 @@ export const ListDiv = styled.div`
 
     hr {
         width: 100%;
-        border: 1px solid var(--gray-1);
+        border: 1px solid var(--black-fixed);
         margin-top: -10px;
     }
 
