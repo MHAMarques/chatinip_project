@@ -28,7 +28,7 @@ export const ChannelList = ({channels, isAdmin}: ChannelListProps) => {
             {channels?.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map((channel) => (
                 <li key={channel.id}>
                     <p># <a href={'?channel='+channel.id}>{channel.name}</a></p>
-                    {isAdmin && queryChannel == channel.id? <small> ( <a href="?log=off">Editar</a> / <a href="?log=off">Deletar</a> )</small> : ''}
+                    {isAdmin && queryChannel == channel.id? <small> ( <a href="#">Editar</a> / <a href="#">Deletar</a> )</small> : ''}
                     
                 </li>
             ))}
