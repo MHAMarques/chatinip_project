@@ -52,6 +52,10 @@ export interface IChatChannel {
     name: string;
 }
 
+export interface INewChannel {
+    name: string;
+}
+
 export interface IContext {
     navigate: NavigateFunction;
     token: string | null;
@@ -61,6 +65,7 @@ export interface IContext {
     getProfile: (userId: string) => void;
     userProfile: () => void;
     userMessages: () => void;
+    newChannel: (data: INewChannel) => void;
     channelMessages: () => void;
     channelInfo: () => void;
     userChannels: () => void;

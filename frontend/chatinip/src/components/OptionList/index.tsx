@@ -1,17 +1,13 @@
 import { ListDiv } from "../../styles/chat"
 
-type DirectListProps = {
-    isAdmin: boolean | undefined;
-}
-
-export const OptionList = ({isAdmin}: DirectListProps) => {
+export const OptionList = () => {
     //
     return(
         <ListDiv>
-            <h2>Opções</h2><hr />
+            <h2>Acesso</h2><hr />
             <ul>
-                {isAdmin? <li>Θ <a href="?edit=user">Gerenciar</a></li> : ''}
-                <li>Θ <a href="?log=off">Sair</a></li>
+                <li>≡ <a href="?log=off">Editar</a></li>
+                <li>Θ <a href="?log=off">Desconectar</a></li>
             </ul>
         </ListDiv>
     )

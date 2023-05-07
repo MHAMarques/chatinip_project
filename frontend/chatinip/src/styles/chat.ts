@@ -16,7 +16,7 @@ export const AsideInfo = styled.aside`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap:10vh;
+    gap:5px;
     
     background-color: var(--gray-2);
     width: 25%;
@@ -41,6 +41,11 @@ export const AsideInfo = styled.aside`
 
     .logo:hover {
         filter: drop-shadow(0 0 10px var(--boxShadow));
+    }
+
+    h2 {
+        font-size:20px;
+        font-weight: 500;
     }
     
 `;
@@ -138,7 +143,7 @@ export const MessageItem = styled.li`
     h3 {
         font-size: 16px;
         font-weight: 300;
-        text-align: justify;
+        padding: 5px 10px;
         color: var(--white-fixed);
     }
     h4 {
@@ -173,6 +178,23 @@ export const ChatInput = styled.div`
         position: absolute;
         right: 10px;
         width: 80px;
+    }
+`;
+
+export const ChatChanForm = styled.form`
+    position: relative;
+
+    input {
+        padding-right: 50px;
+        max-width: 100%;
+    }
+
+    button {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        padding: 0px 5px;
+        max-height: 29px;
     }
 `;
 
@@ -226,13 +248,19 @@ export const ListDiv = styled.div`
         border: 1px solid var(--gray-1);
         margin-top: -10px;
     }
+
     ul {
         width: 100%;
     }
+
     li {
         margin: 10px;
     }
     
+    small {
+        font-size: 10px;
+        padding-left: 15px;
+    }
 `;
 
 export const SelectMenu = styled.section`

@@ -18,7 +18,7 @@ export const SideHeader = ({user}: SideHeaderProps) => {
                 </a>
             </div>
             <div>
-                <h5><a href="?edit=user">{user?.name}</a></h5>
+                <h5>{user?.name}</h5>
                 <span>{user?.email}</span>
             </div>
         </SideProfile>

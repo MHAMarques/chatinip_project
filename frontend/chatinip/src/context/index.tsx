@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { IUserLogin, IUserRequest, IContextProps, IContext, ISendMessage } from "../interfaces";
+import { IUserLogin, IUserRequest, IContextProps, IContext, ISendMessage, INewChannel } from "../interfaces";
 import { api } from "../service";
 import { toast } from "react-toastify";
 
@@ -114,6 +114,19 @@ export const Provider = ({ children }: IContextProps) => {
         return getUser
     }
 
+    const newChannel = async (data: INewChannel): Promise<void> =>{
+        const newChannel = await api
+        .post('/channels/', data)
+        .then((res) => res.data)
+        .catch((err => {
+            console.log("ERRO: ",err.message)
+            return false
+        }))
+        if(newChannel){
+            toast.success("Canal criado com sucesso");
+        }
+    }
+
     const userChannels = async (): Promise<void> => {
         api.defaults.headers.authorization = `Bearer ${token}`;
         const getChannels = await api
@@ -150,6 +163,7 @@ export const Provider = ({ children }: IContextProps) => {
             getProfile,
             userProfile,
             userMessages,
+            newChannel,
             channelMessages,
             channelInfo,
             userChannels,

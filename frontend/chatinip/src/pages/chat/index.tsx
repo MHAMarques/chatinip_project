@@ -118,9 +118,9 @@ export const ChatPage = () => {
         <MainChat>
             <AsideInfo>
                 <SideHeader user={user} />
-                <ChannelList channels={listChannels}/>
+                <ChannelList channels={listChannels} isAdmin={user?.isAdmin}/>
                 <DirectList messages={userChat} userId={user?.id} />
-                <OptionList isAdmin={user?.isAdmin}/>
+                <OptionList />
             </AsideInfo>
             <MessengerChat>
                 <MobileMenu userId={user?.id}/>
