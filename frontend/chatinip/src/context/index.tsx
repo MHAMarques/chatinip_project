@@ -19,16 +19,14 @@ export const Provider = ({ children }: IContextProps) => {
         .post('/login/', data)
         .then((res) => res.data)
         .catch((err => {
-            console.log("ERRO: ",err.message)
+            console.log("ERRO: ",err.response.data['message'])
+            toast.error(err.response.data['message']);
             return false
         }))
         if(logUser){
             localStorage.setItem("chatinip:Token", logUser.token);
             toast.success("Informações corretas");
             navigate('/chat');
-        } 
-        else{
-            toast.error("Informações incorretas");
         }
     }
 
@@ -38,7 +36,7 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error(err.message);
+            toast.error(err.response.data['message']);
             return false
         }))
         if(newUser){
@@ -54,7 +52,7 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             localStorage.removeItem("chatinip:Token");
-            toast.error(err.message);
+            toast.error("Token Invalido: ",err.response.data['message']);
             navigate('/');
             return false
         }))
@@ -68,8 +66,7 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             localStorage.removeItem("chatinip:Token");
-            toast.error(err.message);
-            navigate('/');
+            toast.error("User invalido", err.response.data['message']);
             return false
         }))
         return getUser
@@ -82,7 +79,7 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error(err.message);
+            toast.error("Erro: ",err.response.data['message']);
             return false
         }))
         return getMessages
@@ -95,7 +92,7 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error(err.message);
+            toast.error("ERRO: ",err.response.data['message']);
             return false
         }))
         return getUser
@@ -108,7 +105,7 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error(err.message);
+            toast.error("ERRO: ",err.response.data['message']);
             return false
         }))
         return getUser
@@ -120,6 +117,7 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
+            toast.error("ERRO: ",err.response.data['message']);
             return false
         }))
         if(newChannel){
@@ -134,7 +132,7 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error(err.message);
+            toast.error("ERRO: ",err.response.data['message']);
             return false
         }))
         return getChannels
@@ -148,7 +146,7 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error(err.message);
+            toast.error("ERRO: ",err.response.data['message']);
             return false
         }))
     }
