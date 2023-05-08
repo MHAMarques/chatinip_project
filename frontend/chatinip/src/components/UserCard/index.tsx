@@ -23,7 +23,7 @@ export const UserCard = ({userInfo, chatUser}: SideHeaderProps) => {
             <div>
                 <h5>{userInfo?.name}</h5>
                 <span>{userInfo?.email}</span>
-                {chatUser?.isAdmin ? userInfo?.isActive ? <small>- <a href={"?active="+userInfo.id}>Desativar</a></small> : <small>- <a href={"?active="+userInfo?.id}>Activar</a> | <a href={"?remove="+userInfo?.id}>Remover</a></small> : '' }
+                {chatUser?.isAdmin && userInfo?.id != chatUser?.id ? userInfo?.isActive ? <small>- <a href={"?active="+userInfo.id}>Desativar</a></small> : <small>- <a href={"?active="+userInfo?.id}>Activar</a> | <a href={"?remove="+userInfo?.id}>Remover</a></small> : '' }
             </div>
         </SideProfile>
     )

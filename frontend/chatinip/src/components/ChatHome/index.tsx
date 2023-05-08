@@ -21,24 +21,34 @@ export const ChatHome = ({chatUser}: ChatHomeProps) => {
 
     useEffect(() => {
         
+        async function activatation(id: string){
+            await activeUser(id);
+            setTimeout(() => navigate('/chat'), 500);
+        }
+        async function deletion(id: string){
+            await deleteUser(id);
+            setTimeout(() => navigate('/chat'), 500);
+        }
+        
+        if(queryActivation){
+            activatation(queryActivation);            
+        }
+        else if(queryDelete){
+            deletion(queryDelete);
+        }
+
+    },[queryActivation, queryDelete, navigate, activeUser, deleteUser])
+
+    useEffect(() => {
+        
         async function getUserList(){
             const responseList = await getUsers();
             setUserList(responseList);
         }
         
-        if(queryActivation){
-            activeUser(queryActivation);
-            navigate('/chat');
-        }
-        else if(queryDelete){
-            deleteUser(queryDelete);
-            navigate('/chat');
-        }
-        else{
-            getUserList();
-        }
+        getUserList();
 
-    },[getUsers, queryActivation, queryDelete, navigate, activeUser, deleteUser])
+    },[getUsers])
 
     return(
         <HomeSection>

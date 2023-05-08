@@ -313,14 +313,17 @@ export const SelectMenu = styled.section`
 export const HomeSection = styled.section`
     position: relative;
     width: 100%;
+    min-height: 100%;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     .backG {
         position: absolute;
+        top: 40%;
+        z-index: 0;
 
         height: 180px;
         filter: grayscale(100%);
@@ -333,6 +336,11 @@ export const HomeSection = styled.section`
         }
     }
 
+    main {
+        width: 100%;
+        z-index: 2;
+    }
+
     hr {
         width: 100%;
         border: 1px solid var(--gray-0);
@@ -343,7 +351,7 @@ export const HomeSection = styled.section`
         display: flex;
         flex-flow: row wrap;
         justify-content: space-around;
-        align-items: center;
+        align-items: flex-start;
         gap: 25px;
 
         width: 100%;
