@@ -285,6 +285,7 @@ export const SelectMenu = styled.section`
     background-color: var(--gray-1);
     position: fixed;
     top:0;
+    z-index: 2;
 
     width: 100%;
     min-height: 60px;
@@ -310,15 +311,17 @@ export const SelectMenu = styled.section`
 `;
 
 export const HomeSection = styled.section`
+    position: relative;
     width: 100%;
-    min-height: 90vh;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    .logo {
+    .backG {
+        position: absolute;
+
         height: 180px;
         filter: grayscale(100%);
         opacity: 0.1;
@@ -328,5 +331,36 @@ export const HomeSection = styled.section`
            height: auto;
            max-width: 120px;
         }
+    }
+
+    hr {
+        width: 100%;
+        border: 1px solid var(--gray-0);
+        margin-top: 10px;
+    }
+
+    ul {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: center;
+        gap: 25px;
+
+        width: 100%;
+        padding: 15px;
+
+    }
+
+    li {
+        background-color: var(--gray-0);
+        padding: 10px 5px 10px 15px;
+        width: 250px;
+
+        border: 2px solid var(--black-fixed);
+        border-radius: 5px;
+    }
+
+    .inactive {
+        display: none;
     }
 `;

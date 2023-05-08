@@ -22,6 +22,7 @@ export interface IUserRespose {
     name: string;
     email: string;
     isAdmin: boolean;
+    isActive: boolean;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -63,6 +64,9 @@ export interface IContext {
     userSignUp: (data: IUserRequest) => void;
     sendMessage: (data: ISendMessage) => void;
     getProfile: (userId: string) => void;
+    activeUser: (userId: string) => void;
+    deleteUser: (userId: string) => void;
+    getUsers: () => void;
     userProfile: () => void;
     userMessages: () => void;
     newChannel: (data: INewChannel) => void;

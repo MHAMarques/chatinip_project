@@ -56,6 +56,10 @@ export const Provider = ({ children }: IContextProps) => {
             navigate('/');
             return false
         }))
+        if(!getUser.isActive){
+            toast.error("Conta bloqueada.");
+            navigate('/');
+        }
         return getUser
     }
 
@@ -70,6 +74,49 @@ export const Provider = ({ children }: IContextProps) => {
             return false
         }))
         return getUser
+    }
+
+    const activeUser = async (userId: string): Promise<void> => {
+        api.defaults.headers.authorization = `Bearer ${token}`;
+        const getUser = await api
+        .patch('/users/activation/'+userId)
+        .then((res) => res.data)
+        .catch((err => {
+            localStorage.removeItem("chatinip:Token");
+            toast.error("User invalido", err.response.data['message']);
+            return false
+        }))
+        return getUser
+        if(getUser){
+            toast.success('De/Activação realizada')
+        }
+    }
+
+    const deleteUser = async (userId: string): Promise<void> => {
+        api.defaults.headers.authorization = `Bearer ${token}`;
+        const getUser = await api
+        .delete('/users/'+userId)
+        .then((res) => res.data)
+        .catch((err => {
+            localStorage.removeItem("chatinip:Token");
+            toast.error("User invalido", err.response.data['message']);
+            return false
+        }))
+        toast.success('Usuário removido');
+        return getUser
+    }
+
+    const getUsers = async (): Promise<void> => {
+        api.defaults.headers.authorization = `Bearer ${token}`;
+        const getList = await api
+        .get('/users/')
+        .then((res) => res.data)
+        .catch((err => {
+            localStorage.removeItem("chatinip:Token");
+            toast.error("User invalido", err.response.data['message']);
+            return false
+        }))
+        return getList
     }
 
     const userMessages = async (): Promise<void> => {
@@ -92,7 +139,6 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error("ERRO: ",err.response.data['message']);
             return false
         }))
         return getUser
@@ -105,7 +151,6 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error("ERRO: ",err.response.data['message']);
             return false
         }))
         return getUser
@@ -117,7 +162,7 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error("ERRO: ",err.response.data['message']);
+            toast.error("Problemas para criar canal: ",err.response.data['message']);
             return false
         }))
         if(newChannel){
@@ -132,7 +177,6 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error("ERRO: ",err.response.data['message']);
             return false
         }))
         return getChannels
@@ -146,7 +190,7 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error("ERRO: ",err.response.data['message']);
+            toast.error("Mensagem cancelada: ",err.response.data['message']);
             return false
         }))
     }
@@ -159,6 +203,9 @@ export const Provider = ({ children }: IContextProps) => {
             userSignUp,
             sendMessage,
             getProfile,
+            activeUser,
+            deleteUser,
+            getUsers,
             userProfile,
             userMessages,
             newChannel,

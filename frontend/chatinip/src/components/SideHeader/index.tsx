@@ -13,8 +13,7 @@ export const SideHeader = ({user}: SideHeaderProps) => {
         <SideProfile>
             <div>
                 <a href="/chat">
-                    {user?.isAdmin ? <img src={chatlogo} className='logo' alt="Chatinip Messenger" /> : <Avatar username={user?.name[0]} />}
-                    
+                    {user?.isAdmin ? <img src={chatlogo} width={42} height={42} className='logo' alt="Chatinip Messenger" /> : <Avatar username={user?.name[0]} />}
                 </a>
             </div>
             <div>
