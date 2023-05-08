@@ -4,12 +4,14 @@ export interface IUserRequest {
     email: string
     password: string
     isAdmin: boolean
+    isActive: boolean
 }
 
 
 export interface IUser {
     updatedAt: Date
     createdAt: Date
+    isActive: boolean
     isAdmin: boolean
     email: string
     name: string
@@ -31,6 +33,10 @@ export interface IUserUpdate {
     name?: string
     email?: string
     password?: string
+}
+
+export interface IUserActivation {
+    isActive: boolean
 }
 
 export interface IUserToken {
