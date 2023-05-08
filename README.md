@@ -32,6 +32,7 @@ SECRET_KEY=TroqueEssaSecrect_key
    "api_url":"http://localhost:3030"
    }</pre>
 
+8. Visite a rota <b>/signup</b> no Frontend e crie sua primeira conta de usuário. Ela receberá acesso de administrador para gerenciar o sistema.
 
 <h2 style="font-size:32px;color:mediumblue">Back-End - Chatinip API:</h2>
 
@@ -81,7 +82,7 @@ Response: <b>200 OK</b>
 		"createdAt": "2023-04-29T02:10:23.188Z",
 		"updatedAt": "2023-04-29T02:10:23.188Z"
 	}]
-</pre> 
+</pre>
 
 # /users/profile
 
@@ -99,6 +100,26 @@ Response: <b>200 OK</b>
 	"isAdmin": false,
 	"createdAt": "2023-04-29T02:10:20.368Z",
 	"updatedAt": "2023-05-01T13:34:37.038Z"
+}
+</pre>
+
+# /users/activation/:user_id
+
+<h4><b>GET:</b> Rota disponível somente para usuário autenticado como administrador, usada para ativar/desativar o acesso de usuários ao sistema.</h4>
+Request:
+<pre>
+{}
+</pre>
+Response: <b>200 OK</b>
+<pre>
+{
+	"id": "10df3970-908d-4c31-abad-fa063c99b4ca",
+	"name": "Marcelo Henrique",
+	"email": "marcelohm@gmail.com",
+	"isAdmin": false,
+	"isActive": true,
+	"createdAt": "2023-05-08T00:56:44.978Z",
+	"updatedAt": "2023-05-08T01:01:15.818Z"
 }
 </pre>
 
@@ -242,7 +263,6 @@ Response: <b>204 No content</b>
 {}
 </pre>
 
-
 # /messages
 
 <h4><b>POST</b>: Rota disponível somente para usuário autenticado, usada para enviar mensagens, seja para um canal ou diretamente a um usuário.</h4>
@@ -372,7 +392,7 @@ Response: <b>200 OK</b>
 	"createdAt": "2023-05-01T13:30:48.509Z",
 	"updatedAt": "2023-05-01T13:36:09.991Z"
 }
-</pre> 
+</pre>
 
 <h4><b>DELETE:</b> Rota disponível somente para usuário autenticado como administrador ou dono da mensagem, usada para apagar uma mensagem pelo id.</h4>
 Request:
@@ -383,7 +403,6 @@ Response: <b>204 No content</b>
 <pre>
 {}
 </pre>
-
 
 #
 
