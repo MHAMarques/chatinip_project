@@ -25,6 +25,7 @@ export const DirectList = ({messages, userId}: DirectListProps) => {
         <ListDiv>
             <h2>Recebidas</h2><hr />
             <ul>
+            {filteredReceived.length == 0 ? <small>Não há mensagens</small> : ''}
             {filteredReceived.map((message:any) => (
                 <li key={message?.id}>
                     <p>@ <a href={'?direct='+ message.user.id}>{message.user.name}</a></p>

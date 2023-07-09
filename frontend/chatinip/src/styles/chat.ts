@@ -14,9 +14,9 @@ export const MainChat = styled.div`
 export const AsideInfo = styled.aside`
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    gap:10vh;
+    gap:5px;
     
     background-color: var(--gray-2);
     width: 25%;
@@ -24,6 +24,7 @@ export const AsideInfo = styled.aside`
     max-width: 280px;
     min-width: 240px;
     padding: 10px;
+    border-right: 1px solid var(--black-fixed);
 
     text-align: left;
     overflow-y: auto;
@@ -41,6 +42,11 @@ export const AsideInfo = styled.aside`
 
     .logo:hover {
         filter: drop-shadow(0 0 10px var(--boxShadow));
+    }
+
+    h2 {
+        font-size:20px;
+        font-weight: 500;
     }
     
 `;
@@ -119,10 +125,10 @@ export const MessengerChat = styled.div`
 `;
 
 export const MessageItem = styled.li`
-    margin: 15px 5px;
+    margin: 25px 10px;
     background-color: var(--gray-2);
-    padding: 5px 0.8rem;
     border-radius: 8px;
+    border: 2px solid var(--black-fixed);
 
     .sender {
         text-align: right;
@@ -134,25 +140,33 @@ export const MessageItem = styled.li`
 
     .reverser {
         flex-direction: row-reverse;
+        background-color: var(--gray-1);
     }
 
     h3 {
         font-size: 16px;
         font-weight: 300;
+        padding: 15px;
+
+        text-align: justify;
         color: var(--white-fixed);
     }
     h4 {
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: center;
-
+        
         font-size: 14px;
         font-weight: 500;
+        padding: 5px 10px;
+
+        background-color: var(--gray-0);
+        border-radius: 6px 6px 0px 0px;
+        border-bottom: 1px solid var(--black-fixed);
     }
     small{
         font-size: 10px;
-        padding: 0px 10px;
         color: var(--gray-3);
     }
 `;
@@ -173,6 +187,23 @@ export const ChatInput = styled.div`
         position: absolute;
         right: 10px;
         width: 80px;
+    }
+`;
+
+export const ChatChanForm = styled.form`
+    position: relative;
+
+    input {
+        padding-right: 50px;
+        max-width: 100%;
+    }
+
+    button {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        padding: 0px 5px;
+        max-height: 29px;
     }
 `;
 
@@ -223,16 +254,22 @@ export const ListDiv = styled.div`
 
     hr {
         width: 100%;
-        border: 1px solid var(--gray-1);
+        border: 1px solid var(--black-fixed);
         margin-top: -10px;
     }
+
     ul {
         width: 100%;
     }
+
     li {
         margin: 10px;
     }
     
+    small {
+        font-size: 10px;
+        padding-left: 15px;
+    }
 `;
 
 export const SelectMenu = styled.section`
@@ -249,6 +286,7 @@ export const SelectMenu = styled.section`
     background-color: var(--gray-1);
     position: fixed;
     top:0;
+    z-index: 2;
 
     width: 100%;
     min-height: 60px;
@@ -274,15 +312,20 @@ export const SelectMenu = styled.section`
 `;
 
 export const HomeSection = styled.section`
+    position: relative;
     width: 100%;
-    min-height: 90vh;
+    min-height: 100%;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
-    .logo {
+    .backG {
+        position: absolute;
+        top: 40%;
+        z-index: 0;
+
         height: 180px;
         filter: grayscale(100%);
         opacity: 0.1;
@@ -292,5 +335,41 @@ export const HomeSection = styled.section`
            height: auto;
            max-width: 120px;
         }
+    }
+
+    main {
+        width: 100%;
+        z-index: 2;
+    }
+
+    hr {
+        width: 100%;
+        border: 1px solid var(--gray-0);
+        margin-top: 10px;
+    }
+
+    ul {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        gap: 25px;
+
+        width: 100%;
+        padding: 15px;
+
+    }
+
+    li {
+        background-color: var(--gray-0);
+        padding: 10px 5px 10px 15px;
+        width: 250px;
+
+        border: 2px solid var(--black-fixed);
+        border-radius: 5px;
+    }
+
+    .inactive {
+        display: none;
     }
 `;

@@ -22,6 +22,7 @@ export interface IUserRespose {
     name: string;
     email: string;
     isAdmin: boolean;
+    isActive: boolean;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -52,14 +53,23 @@ export interface IChatChannel {
     name: string;
 }
 
+export interface INewChannel {
+    name: string;
+}
+
 export interface IContext {
     navigate: NavigateFunction;
     token: string | null;
     userSignIn: (data: IUserLogin) => void;
     userSignUp: (data: IUserRequest) => void;
     sendMessage: (data: ISendMessage) => void;
+    getProfile: (userId: string) => void;
+    activeUser: (userId: string) => void;
+    deleteUser: (userId: string) => void;
+    getUsers: () => void;
     userProfile: () => void;
     userMessages: () => void;
+    newChannel: (data: INewChannel) => void;
     channelMessages: () => void;
     channelInfo: () => void;
     userChannels: () => void;

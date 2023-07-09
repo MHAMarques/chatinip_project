@@ -11,15 +11,20 @@ const loginService = async (loginInfo:IUserLogin) => {
     
     const checkEmail = loginInfo.email;
     const checkPassword = loginInfo.password;
+    const checkActive = true;
 
     const loginUser = await userRepo.findOneBy({email: checkEmail});
     if(String(loginUser) == 'null'){
-        throw new AppError(403, 'Invalid login info.');
+        throw new AppError(403, 'Invalid login information.');
     }
     
+    if(!loginUser.isActive){
+        throw new AppError(423, 'Login locked. Permission required.');
+    }
+
     const loginPassword = await compare(checkPassword, loginUser.password);
     if(!loginPassword){
-        throw new AppError(403, 'Invalid login info.');
+        throw new AppError(403, 'Invalid login information.');
     }
 
     const token = jwt.sign(

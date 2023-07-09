@@ -30,7 +30,7 @@ export const DirectMessage = ({chatMessage, chatUser}: DirectMessageProps) => {
             <MessageItem key={chatMessage.id}>
                 <div className={chatMessage.receiver != chatUser?.id ? 'sender' : 'receiver'}>
                     <h4 className={chatMessage.receiver != chatUser?.id ? 'reverser' : '#'}>
-                        <a href={chatMessage.receiver == chatUser?.id ? '?direct='+chatMessage.user.id : '/' } title="Enviar mensagem direta">{chatMessage.user.name}</a>
+                        <a href={chatMessage.receiver == chatUser?.id ? '?direct='+chatMessage.user.id : '/chat' } title="Enviar mensagem direta">{chatMessage.user.name}</a>
                         <small>{formattedDate}</small>
                     </h4>
                     <h3>{chatMessage.message}</h3>

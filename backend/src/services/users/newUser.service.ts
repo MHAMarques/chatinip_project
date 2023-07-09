@@ -5,11 +5,21 @@ import { userResponseSchema } from "../../schemas/user.schemas";
 import { hashSync } from "bcrypt";
 
 const newUserService = async (userInfo:IUserRequest) => {
+    const userRepo = AppDataSource.getRepository(User);
+    const firstUser = await userRepo.findOneBy({isAdmin: true});
+    
+    if(!firstUser){
+        userInfo.isAdmin = true;
+        userInfo.isActive = true;
+        console.log("First user created")
+    }
+    else {
+        userInfo.isAdmin = false;
+        userInfo.isActive = false;
+    }
+
     userInfo.password = hashSync(userInfo.password, 10);
-    
-    const userRepo = AppDataSource.getRepository(User);    
     const newUser = userRepo.create(userInfo);
-    
     await userRepo.save(newUser);
     const returnUser = await userResponseSchema.validate(newUser, {stripUnknown: true})
     

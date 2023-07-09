@@ -9,7 +9,7 @@ export const GlobalStyleDefault = createGlobalStyle`
     --brand-2: #103C87;
     --brand-3: #0071FF;
 
-    --gray-0: #0B0B0B;
+    --gray-0: #161616;
     --gray-1: #212121;
     --gray-2: #303030;
     --gray-3: #808080;

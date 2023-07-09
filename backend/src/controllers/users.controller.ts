@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
-import { IUserRequest, IUserUpdate } from "../interfaces/users";
+import { IUserActivation, IUserRequest, IUserUpdate } from "../interfaces/users";
 import newUserService from "../services/users/newUser.service";
 import listUsersService from "../services/users/listUsers.service";
 import getUsersService from "../services/users/getUsers.service";
 import updateUserService from "../services/users/updateUser.service";
 import deleteUserService from "../services/users/deleteUser.service";
-import { newUserSchema, updateUserSchema } from "../schemas/user.schemas";
+import { activationUserSchema, newUserSchema, updateUserSchema } from "../schemas/user.schemas";
 import AppError from "../errors/AppError";
+import actvationUserService from "../services/users/activationUser.service";
 
 export const newUserController = async(req: Request, res: Response) => {
     try {
@@ -52,6 +53,16 @@ export const updateUserController =async (req:Request, res: Response) => {
             return res.status(401).json({message: 'Unauthorized update.'});
         }
         const userData = await updateUserService(userId, userInfo);
+        return res.status(200).json(userData);
+    } catch (error) {
+        throw new AppError(400, error.errors);
+    }
+}
+
+export const UserActivationController = async (req:Request, res: Response) => {
+    try {
+        const userId: string = req.params.id;
+        const userData = await actvationUserService(userId);
         return res.status(200).json(userData);
     } catch (error) {
         throw new AppError(400, error.errors);

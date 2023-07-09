@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { IUserLogin, IUserRequest, IContextProps, IContext, ISendMessage } from "../interfaces";
+import { IUserLogin, IUserRequest, IContextProps, IContext, ISendMessage, INewChannel } from "../interfaces";
 import { api } from "../service";
 import { toast } from "react-toastify";
 
@@ -19,16 +19,14 @@ export const Provider = ({ children }: IContextProps) => {
         .post('/login/', data)
         .then((res) => res.data)
         .catch((err => {
-            console.log("ERRO: ",err.message)
+            console.log("ERRO: ",err.response.data['message'])
+            toast.error(err.response.data['message']);
             return false
         }))
         if(logUser){
             localStorage.setItem("chatinip:Token", logUser.token);
             toast.success("Informações corretas");
             navigate('/chat');
-        } 
-        else{
-            toast.error("Informações incorretas");
         }
     }
 
@@ -38,7 +36,7 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error(err.message);
+            toast.error(err.response.data['message']);
             return false
         }))
         if(newUser){
@@ -54,11 +52,71 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             localStorage.removeItem("chatinip:Token");
-            toast.error(err.message);
+            toast.error("Token Invalido: ",err.response.data['message']);
             navigate('/');
             return false
         }))
+        if(!getUser.isActive){
+            toast.error("Conta bloqueada.");
+            navigate('/');
+        }
         return getUser
+    }
+
+    const getProfile = async (userId: string): Promise<void> => {
+        api.defaults.headers.authorization = `Bearer ${token}`;
+        const getUser = await api
+        .get('/users/'+userId)
+        .then((res) => res.data)
+        .catch((err => {
+            localStorage.removeItem("chatinip:Token");
+            toast.error("User invalido", err.response.data['message']);
+            return false
+        }))
+        return getUser
+    }
+
+    const activeUser = async (userId: string): Promise<void> => {
+        api.defaults.headers.authorization = `Bearer ${token}`;
+        const getUser = await api
+        .patch('/users/activation/'+userId)
+        .then((res) => res.data)
+        .catch((err => {
+            localStorage.removeItem("chatinip:Token");
+            toast.error("User invalido", err.response.data['message']);
+            return false
+        }))
+        return getUser
+        if(getUser){
+            toast.success('De/Activação realizada')
+        }
+    }
+
+    const deleteUser = async (userId: string): Promise<void> => {
+        api.defaults.headers.authorization = `Bearer ${token}`;
+        const getUser = await api
+        .delete('/users/'+userId)
+        .then((res) => res.data)
+        .catch((err => {
+            localStorage.removeItem("chatinip:Token");
+            toast.error("User invalido", err.response.data['message']);
+            return false
+        }))
+        toast.success('Usuário removido');
+        return getUser
+    }
+
+    const getUsers = async (): Promise<void> => {
+        api.defaults.headers.authorization = `Bearer ${token}`;
+        const getList = await api
+        .get('/users/')
+        .then((res) => res.data)
+        .catch((err => {
+            localStorage.removeItem("chatinip:Token");
+            toast.error("User invalido", err.response.data['message']);
+            return false
+        }))
+        return getList
     }
 
     const userMessages = async (): Promise<void> => {
@@ -68,7 +126,7 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error(err.message);
+            toast.error("Erro: ",err.response.data['message']);
             return false
         }))
         return getMessages
@@ -81,7 +139,6 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error(err.message);
             return false
         }))
         return getUser
@@ -94,10 +151,23 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error(err.message);
             return false
         }))
         return getUser
+    }
+
+    const newChannel = async (data: INewChannel): Promise<void> =>{
+        const newChannel = await api
+        .post('/channels/', data)
+        .then((res) => res.data)
+        .catch((err => {
+            console.log("ERRO: ",err.message)
+            toast.error("Problemas para criar canal: ",err.response.data['message']);
+            return false
+        }))
+        if(newChannel){
+            toast.success("Canal criado com sucesso");
+        }
     }
 
     const userChannels = async (): Promise<void> => {
@@ -107,7 +177,6 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error(err.message);
             return false
         }))
         return getChannels
@@ -121,7 +190,7 @@ export const Provider = ({ children }: IContextProps) => {
         .then((res) => res.data)
         .catch((err => {
             console.log("ERRO: ",err.message)
-            toast.error(err.message);
+            toast.error("Mensagem cancelada: ",err.response.data['message']);
             return false
         }))
     }
@@ -133,8 +202,13 @@ export const Provider = ({ children }: IContextProps) => {
             userSignIn,
             userSignUp,
             sendMessage,
+            getProfile,
+            activeUser,
+            deleteUser,
+            getUsers,
             userProfile,
             userMessages,
+            newChannel,
             channelMessages,
             channelInfo,
             userChannels,
