@@ -116,6 +116,7 @@ export const MessengerChat = styled.div`
         max-height: 88vh;
         width: 100%;
         margin-bottom: -40px;
+        
         @media screen and (max-width: 580px) {
             max-height: 78vh;
         }
